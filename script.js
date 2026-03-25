@@ -20,6 +20,7 @@ const mealCategoryToCocktailIngredient = {
   // Add more if needed; otherwise default to something like 'cola'
 };
 
+
 /*
     2) Main Initialization Function
        Called on page load to start all the requests:
@@ -49,7 +50,13 @@ function init() {
  Returns a Promise that resolves with the meal object
  */
 function fetchRandomMeal() {
-    // Fill in
+    return fetch("https://www.themealdb.com/api/json/v1/1/random.php")
+      .then((response) => response.json())
+      .then((data) => {
+        return data.meals[0];
+
+      })
+    
 }
 
 /*
@@ -59,7 +66,7 @@ Receives a meal object with fields like:
   strIngredientX, strMeasureX, etc.
 */
 function displayMealData(meal) {
-    // Fill in
+
 }
 
 /*
