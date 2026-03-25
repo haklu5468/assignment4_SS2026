@@ -66,7 +66,51 @@ Receives a meal object with fields like:
   strIngredientX, strMeasureX, etc.
 */
 function displayMealData(meal) {
+    const mealContainer = document.getElementById("meal-container");
 
+    mealContainer.innerHTML = "";
+
+    const mealImage = document.createElement("img");
+    const mealHeading = document.createElement("h1");
+    const category = document.createElement("p");
+    const ingredientHeading = document.createElement("h3");
+    const ingredientList = document.createElement("ul");
+    const instructionsHeading = document.createElement("h3");
+    const instructionParagraph = document.createElement("p");
+
+    mealImage.src = meal.strMealThumb;
+    mealImage.alt = meal.strMeal;
+    mealHeading.textContent = meal.strMeal;
+    category.textContent = meal.strCategory;
+    ingredientHeading.textContent = "Ingredients:";
+    instructionsHeading.textContent = "Instructions:";
+    instructionParagraph.textContent = meal.strInstructions;
+
+    mealContainer.appendChild(mealImage);
+    mealContainer.appendChild(mealHeading);
+    mealContainer.appendChild(category);
+    mealContainer.appendChild(ingredientHeading);
+
+
+    for (let i = 1; i< 21; i++) {
+      const ingredientElement = document.createElement("li");
+      const ingredient = meal["strIngredient" + i];
+      const measure = meal["strMeasure" + i]
+
+      if (ingredient) {
+        if (measure) { 
+          ingredientElement.textContent = measure + " " + ingredient;
+        } else { //if there is not the same amount of ingredients and measurements
+          ingredientElement.textContent = ingredient;
+        }
+        ingredientList.appendChild(ingredientElement);
+      }
+    }
+
+    mealContainer.appendChild(ingredientList);
+
+    mealContainer.appendChild(instructionsHeading);
+    mealContainer.appendChild(instructionParagraph);
 }
 
 /*
