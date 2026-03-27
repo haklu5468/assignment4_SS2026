@@ -130,7 +130,16 @@ Don't forget encodeURIComponent()
 If no cocktails found, fetch random
 */
 function fetchCocktailByDrinkIngredient(drinkIngredient) {
-    // Fill in
+    return fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${encodeURIComponent(drinkIngredient)}`)
+      .then((response)=>response.json())
+      .then((data)=>{
+        console.log(data);
+        if(data.drinks && data.drinks.length>0){
+          return data.drinks[0];
+        } else {
+          return fetchRandomCocktail();
+        }
+      })
 }
 
 /*
@@ -138,7 +147,7 @@ Fetch a Random Cocktail (backup in case nothing is found by the search)
 Returns a Promise that resolves to cocktail object
 */
 function fetchRandomCocktail() {
-    // Fill in
+    // test
 }
 
 /*
