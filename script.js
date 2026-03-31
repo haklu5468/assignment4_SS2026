@@ -158,7 +158,40 @@ function fetchRandomCocktail() {
 Display Cocktail Data in the DOM
 */
 function displayCocktailData(cocktail) {
-    // Fill in
+    const cocktailContainer = document.getElementById("cocktail-container");
+
+    cocktailContainer.innerHTML = "";
+
+    const cocktailImage = document.createElement("img");
+    const cocktailHeading = document.createElement("h1");
+    const ingredientHeading = document.createElement("h3");
+    const ingredientList = document.createElement("ul");
+
+    cocktailImage.src = cocktail.strDrinkThumb;
+    cocktailImage.alt = cocktail.strDrink;
+    cocktailHeading.textContent = cocktail.strDrink;
+    ingredientHeading.textContent = "Ingredients:";
+
+    cocktailContainer.appendChild(cocktailImage);
+    cocktailContainer.appendChild(cocktailHeading);
+    cocktailContainer.appendChild(ingredientHeading);
+
+    for (let i = 1; i < 16; i++) {
+      const ingredientElement = document.createElement("li");
+      const ingredient = cocktail["strIngredient" + i];
+      const measure = cocktail["strMeasure" + i];
+
+      if (ingredient) {
+        if (measure) {
+          ingredientElement.textContent = measure + " " + ingredient;
+        } else {
+          ingredientElement.textContent = ingredient;
+        }
+        ingredientList.appendChild(ingredientElement);
+      }
+    }
+
+    cocktailContainer.appendChild(ingredientList);
 }
 
 /*
