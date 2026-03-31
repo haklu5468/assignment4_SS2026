@@ -77,6 +77,7 @@ function displayMealData(meal) {
     const ingredientList = document.createElement("ul");
     const instructionsHeading = document.createElement("h3");
     const instructionParagraph = document.createElement("p");
+    const videoLink = document.createElement("a");
 
     mealImage.src = meal.strMealThumb;
     mealImage.alt = meal.strMeal;
@@ -85,6 +86,9 @@ function displayMealData(meal) {
     ingredientHeading.textContent = "Ingredients:";
     instructionsHeading.textContent = "Instructions:";
     instructionParagraph.textContent = meal.strInstructions;
+    videoLink.href = meal.strYoutube;
+    videoLink.textContent = "Watch recipe video";
+    videoLink.target = "_blank";
 
     mealContainer.appendChild(mealImage);
     mealContainer.appendChild(mealHeading);
@@ -111,6 +115,9 @@ function displayMealData(meal) {
 
     mealContainer.appendChild(instructionsHeading);
     mealContainer.appendChild(instructionParagraph);
+    if (meal.strYoutube) {
+      mealContainer.appendChild(videoLink);
+    }
 }
 
 /*
